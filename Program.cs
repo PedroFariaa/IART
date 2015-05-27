@@ -32,15 +32,38 @@ namespace ConsoleApplication1
                 Console.WriteLine();
 
                 Console.WriteLine("introduce forma geometrica");
-                string input_O_formgeo = Console.ReadLine();
-                Console.WriteLine("introduce dimX");
-                var input_O_X = Console.ReadLine();
-                Console.WriteLine("introduce dimY");
-                var input_O_Y = Console.ReadLine();
+                Console.WriteLine("1. rectangulo");
+                Console.WriteLine("2. triangulo");
+                Console.WriteLine("3. circulo");
+                int input_O_formgeo = Convert.ToInt32(Console.ReadLine());
 
-             /*   Object ob1 = new Object(Convert.ToInt32(input_O_X), Convert.ToInt32(input_O_Y), input_O_formgeo);*/
-                Rectangulo ob1;
-                placa.addObj(ob1);
+                if (input_O_formgeo == 1) 
+                {
+                    Console.WriteLine("introduce dimX");
+                    var input_O_X = Console.ReadLine();
+                    Console.WriteLine("introduce dimY");
+                    var input_O_Y = Console.ReadLine();
+                    placa.getObjects().Add(new Rectangulo(Convert.ToInt32(input_O_X), Convert.ToInt32(input_O_Y)));
+                }
+                else if(input_O_formgeo == 2)
+                {
+                    Console.WriteLine("introduce Base do triang");
+                    var input_O_B = Console.ReadLine();
+                    Console.WriteLine("introduce altura");
+                    var input_O_H = Console.ReadLine();
+                    placa.getObjects().Add(new Triangulo(Convert.ToInt32(input_O_B), Convert.ToInt32(input_O_H)));
+                }
+                else if(input_O_formgeo == 3)
+                {
+                    Console.WriteLine("introduce raio");
+                    var input_O_R = Console.ReadLine();
+                    placa.getObjects().Add(new Circulo(Convert.ToInt32(input_O_R)));
+                }
+                else
+                {
+                    Console.WriteLine("The option you have introduced is not valid");
+                }
+                
 
             }
             

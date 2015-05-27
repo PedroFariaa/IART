@@ -10,6 +10,11 @@ namespace ConsoleApplication1
     {
         float raio;
 
+        public Circulo(int p) : base()
+        {
+            this.raio = p;
+        }
+
         public override float Area()
         {
             var ret =  2 * Math.PI * raio * raio;

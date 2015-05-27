@@ -8,8 +8,14 @@ namespace ConsoleApplication1
 {
     class Triangulo : Object
     {
-        private int t_base;
-        private int altura;
+        private float t_base;
+        private float altura;
+
+        public Triangulo(int p1, int p2) : base()
+        {
+            this.t_base = p1;
+            this.altura = p2;
+        }
 
         public override float Area()
         {

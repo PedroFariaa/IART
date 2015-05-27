@@ -10,21 +10,19 @@ namespace ConsoleApplication1
     class Board
     {
         int[][] cel; //array de celulas
-        List<Object> objectos;
-        int B_dimX, B_dimY;
-        private short p1;
-        private short p2;
+        private List<Object> objectos = new List<Object> ();
+        float B_dimX, B_dimY;
 
-        public Board(short p1, short p2)
+        public Board(float p1, float p2)
         {
             this.B_dimX = p1;
             this.B_dimY = p2;
         }
 
 
-        public void addObj(Object ob1)
+        public List<Object> getObjects()
         {
-            objectos.Add(ob1);
+            return objectos;
         }
 
         public float getOcupacao()
