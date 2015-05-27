@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1.Logic
 {
-    class rectangulo : Object
+    class Rectangulo : Object
     {
         private float dimX, dimY;
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ConsoleApplication1.Logic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -37,7 +38,8 @@ namespace ConsoleApplication1
                 Console.WriteLine("introduce dimY");
                 var input_O_Y = Console.ReadLine();
 
-                Object ob1 = new Object(Convert.ToInt32(input_O_X), Convert.ToInt32(input_O_Y), input_O_formgeo);
+             /*   Object ob1 = new Object(Convert.ToInt32(input_O_X), Convert.ToInt32(input_O_Y), input_O_formgeo);*/
+                Rectangulo ob1;
                 placa.addObj(ob1);
 
             }

@@ -8,6 +8,6 @@ namespace ConsoleApplication1
 {
     class Cromossoma
     {
-        int[] cromossoma;
+        List<int> cromossoma;
     }
 }

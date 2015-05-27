@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ConsoleApplication1
 {
-    class Object
+    abstract class Object
     {
         public static int lastID = -1;
         int id, dimX, dimY;
@@ -19,7 +19,6 @@ namespace ConsoleApplication1
             this.dimX = p1;
             this.dimY = p2;
             this.formaGeo = input_O_formgeo;
-            this.areaObj = this.Area();
         }
 
         public void rodar(Object ob1)
