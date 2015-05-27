@@ -40,5 +40,10 @@ namespace ConsoleApplication1
             return 1 - getOcupacao();
         }
 
+        public void Grid(List<Object> objectos)
+        {
+
+        }
+
     }
 }

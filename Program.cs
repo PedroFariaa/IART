@@ -66,7 +66,22 @@ namespace ConsoleApplication1
                 
 
             }
-            
+
+
+            /*
+                        DEFINIR A GRID
+             *          
+             *          PASSAR OBJECTOS PARA CROMOSSOMA 
+             *          VERIFICAR SE O CROMOSSOMA É POSSIVEL
+             *          
+             *          CONVERTER CROMOSSOMA PARA STRING ?
+             *          UTILIZAR AG
+             *          
+             *          VERIFICAR SE O CROMOSSOMA RESULTANTE É VALIDO
+             *          APRESENTAR RESULTADOS
+             
+             */
+
 
             Console.WriteLine("SUCCESS !");
             Console.ReadKey();
