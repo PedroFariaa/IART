@@ -41,9 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Genetic Alghoritms\Ag.cs" />
+    <Compile Include="Genetic Alghoritms\Individuo.cs" />
+    <Compile Include="Genetic Alghoritms\Populacao.cs" />
     <Compile Include="Logic\Board.cs" />
     <Compile Include="Logic\Circulo.cs" />
-    <Compile Include="Logic\Cromossoma.cs" />
+    <Compile Include="Genetic Alghoritms\Cromossoma.cs" />
     <Compile Include="Logic\Object.cs" />
     <Compile Include="Logic\Rectangulo.cs" />
     <Compile Include="Program.cs" />
