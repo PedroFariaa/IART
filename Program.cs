@@ -12,43 +12,47 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Otimiação de corte de objectos em placas de madeira");
+            Console.WriteLine("***********************************************************");
+            Console.WriteLine("** OPTIMIZAÇÃO DE CORTE DE OBECJTOS EM PLACAS DE MADEIRA **");
+            Console.WriteLine("***********************************************************");
             Console.WriteLine();
-            Console.WriteLine("B_dimX");
+            Console.Write("Largura da Placa: ");
             var input_B_dimX = Console.ReadLine();
 
-            Console.WriteLine("B_dimY");
+            Console.Write("Altura da Placa: ");
             var input_B_dimY = Console.ReadLine();
 
             Board placa = new Board(float.Parse(input_B_dimX), float.Parse(input_B_dimY));
-
-            Console.WriteLine("Introduce the Number of objects you want to cut: ");
+            
+            Console.WriteLine();
+            Console.Write("Número de objectos a cortar: ");
             var input_NO = Console.ReadLine();
             int Numb_Obj = Convert.ToInt32(input_NO);
 
             for(int a = 0; a < Numb_Obj; a++){
+                Console.WriteLine();
                 Console.WriteLine("----------------------");
                 Console.WriteLine("-- Adding an Object --");
                 Console.WriteLine("----------------------");
                 Console.WriteLine();
 
-                Console.WriteLine("introduce forma geometrica");
-                Console.WriteLine("1. rectangulo");
-                Console.WriteLine("2. triangulo");
-                Console.WriteLine("3. circulo");
+                Console.WriteLine("1. rectângulo");
+                Console.WriteLine("2. triângulo");
+                Console.WriteLine("3. círculo");
+                Console.WriteLine("Forma geométrica pretendida: ");
                 int input_O_formgeo = Convert.ToInt32(Console.ReadLine());
 
                 if (input_O_formgeo == 1) 
                 {
-                    Console.WriteLine("introduce dimX");
+                    Console.Write("Largura do rectângulo: ");
                     var input_O_X = Console.ReadLine();
-                    Console.WriteLine("introduce dimY");
+                    Console.Write("Altura do rectângulo: ");
                     var input_O_Y = Console.ReadLine();
                     /* VERIFICAR TAMANHO DAS PEÇAS */
                     if (float.Parse(input_O_X) > float.Parse(input_B_dimX) || float.Parse(input_O_Y) > float.Parse(input_B_dimY))
                     {
                         a--;
-                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                        Console.WriteLine("\nO objecto tem tamanho superior ao da placa. Introduz novas medidas!");
                     }
                     else
                     {
@@ -57,14 +61,14 @@ namespace ConsoleApplication1
                 }
                 else if (input_O_formgeo == 2)
                 {
-                    Console.WriteLine("introduce Base do triang");
+                    Console.Write("Base do triângulo: ");
                     var input_O_B = Console.ReadLine();
-                    Console.WriteLine("introduce altura");
+                    Console.Write("Altura do triângulo: ");
                     var input_O_H = Console.ReadLine();
                     if (float.Parse(input_O_B) > float.Parse(input_B_dimX) || float.Parse(input_O_H) > float.Parse(input_B_dimY))
                     {
                         a--;
-                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                        Console.WriteLine("\nO objecto tem tamanho superior ao da placa. Introduz novas medidas!");
                     }
                     else
                     {
@@ -73,12 +77,12 @@ namespace ConsoleApplication1
                 }
                 else if (input_O_formgeo == 3)
                 {
-                    Console.WriteLine("introduce raio");
+                    Console.Write("Raio do círculo: ");
                     var input_O_R = Console.ReadLine();
                     if (float.Parse(input_O_R) > float.Parse(input_B_dimX) || float.Parse(input_O_R) > float.Parse(input_B_dimY))
                     {
                         a--;
-                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                        Console.WriteLine("\nO objecto tem tamanho superior ao da placa. Introduz novas medidas!");
                     }
                     else
                     {
@@ -87,7 +91,7 @@ namespace ConsoleApplication1
                 }
                 else
                 {
-                    Console.WriteLine("The option you have introduced is not valid");
+                    Console.WriteLine("A opção introduzida é inválida");
                 }
                 
 
@@ -106,7 +110,7 @@ namespace ConsoleApplication1
 
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine("Desperdicio da placa: " + placa.getDesperdicio()*100 + "%");
+            Console.WriteLine("DESPERDÍCIO: " + placa.getDesperdicio()*100 + "%");
 
             Console.ReadKey();
         }
