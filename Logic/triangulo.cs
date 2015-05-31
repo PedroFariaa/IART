@@ -19,6 +19,21 @@ namespace ConsoleApplication1
             this.Obj_Y = p2;
         }
 
+        public override string getClass()
+        {
+            return "triangulo";
+        }
+
+        public override string getMedida1()
+        {
+            return t_base.ToString();
+        }
+
+        public override string getMedida2()
+        {
+            return altura.ToString();
+        }
+
         public override float Area()
         {
             return t_base * altura / 2;

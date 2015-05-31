@@ -39,7 +39,7 @@ namespace ConsoleApplication1
         {
             float area_parcelas = 0;
             foreach(Object obj in objectos){
-                area_parcelas = obj.Area();
+                area_parcelas += obj.Area();
             }
             float area_placa = B_dimX * B_dimY;
             return area_parcelas / area_placa;

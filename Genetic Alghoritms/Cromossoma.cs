@@ -97,8 +97,8 @@ namespace ConsoleApplication1
                         {
                             if (fit(g, objectos[obj.Key-1], i, j) == true)
                             {
-                                place(g, objectos[obj.Key], i, j);
-                                sumArea += objectos[obj.Key].Area();
+                                place(g, objectos[obj.Key-1], i, j);
+                                sumArea += objectos[obj.Key-1].Area();
                                 placed = true;
                                 break;
                             }
@@ -150,9 +150,12 @@ namespace ConsoleApplication1
         }
 
     
-        public void imprimeGenes()
+        public void imprimeGenes(List<Object> objectos)
         {
-            Console.WriteLine("imprimir genes");
+            for (int a = 0; a < genes.Count; a++)
+            {
+                objectos[genes[a].Key-1].imprime();
+            }
         }
 
 

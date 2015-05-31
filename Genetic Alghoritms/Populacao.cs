@@ -72,12 +72,5 @@ namespace ConsoleApplication1.Genetic_Alghoritms
             return melhor;
         }
 
-        public void imprimePopulacao()
-        {
-            foreach(Cromossoma crom in cromossomas)
-            {
-                crom.imprimeGenes();
-            }
-        }
     }
 }

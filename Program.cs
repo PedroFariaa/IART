@@ -99,20 +99,15 @@ namespace ConsoleApplication1
             
             Ag evo = new Ag(0.6F, 0.1F, true);
 
-            evo.evolucao(pInicial, g, placa.getObjects());
+            Populacao pFinal = evo.evolucao(pInicial, g, placa.getObjects());
+            Cromossoma best = pFinal.getMelhorAdaptado(g, placa.getObjects());
 
-            
+            best.imprimeGenes(placa.getObjects());
 
-            /*
-             
-             *          
-             *          VERIFICAR SE O CROMOSSOMA RESULTANTE É VALIDO
-             *          APRESENTAR RESULTADOS
-             
-             */
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Desperdicio da placa: " + placa.getDesperdicio()*100 + "%");
 
-
-            Console.WriteLine("SUCCESS !");
             Console.ReadKey();
         }
     }

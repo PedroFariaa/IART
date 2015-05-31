@@ -37,5 +37,45 @@ namespace ConsoleApplication1
         {
             return 0;
         }
+
+        internal void imprime()
+        {
+            Console.WriteLine();
+            Console.WriteLine(" - - - - -  Object  - - - - - ");
+            Console.WriteLine();
+            Console.WriteLine(this.getClass());
+
+            if (this.getClass() == "triangulo")
+            {
+                Console.WriteLine("Tamnho da base" + this.getMedida1());
+                Console.WriteLine("Altura" + this.getMedida2());
+            }
+            else if (this.getClass() == "rectangulo")
+            {
+                Console.WriteLine("Comprimento" + this.getMedida1());
+                Console.WriteLine("Largura" + this.getMedida2());
+            }
+            else
+            {
+                Console.WriteLine("Raio" + this.getMedida1());
+            }
+
+
+        }
+
+        public virtual string getClass()
+        {
+            return "";
+        }
+
+        public virtual string getMedida2()
+        {
+            return "";
+        }
+
+        public virtual string getMedida1()
+        {
+            return "";
+        }
     }
 }

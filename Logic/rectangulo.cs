@@ -18,6 +18,21 @@ namespace ConsoleApplication1.Logic
             this.Obj_Y = p2;
         }
 
+        public override string getClass()
+        {
+            return "rectangulo";
+        }
+
+        public override string getMedida1()
+        {
+            return dimX.ToString();
+        }
+
+        public override string getMedida2()
+        {
+            return dimY.ToString();
+        }
+
         public override float Area()
         {
             var ret = dimX * dimY;
