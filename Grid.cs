@@ -10,17 +10,20 @@ namespace ConsoleApplication1
     {
         List<List<int>> grelha = new List<List<int>>();
         public float B_dimX, B_dimY;
+        public int Blinhas, Bcolunas;
 
         public Grid(float B_dimX, float B_dimY, List<Object> obj)
         {
             this.B_dimX = B_dimX;
             this.B_dimY = B_dimY;
             Object menor = procuraObjMenor(obj);
+            this.Blinhas = Convert.ToInt32(B_dimX) / Convert.ToInt32(menor.dimMenor());
+            this.Bcolunas = Convert.ToInt32(B_dimY) / Convert.ToInt32(menor.dimMenor());
                                     
-            for (int i = 0; i < B_dimX / menor.dimMenor(); i++)
+            for (int i = 0; i < Blinhas; i++)
             {
                 List<int> linha = new List<int>();
-                for (int j = 0; j < B_dimY / menor.dimMenor(); j++)
+                for (int j = 0; j < Bcolunas; j++)
                 {
                     linha.Add(0);
                 }

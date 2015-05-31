@@ -95,7 +95,7 @@ namespace ConsoleApplication1
                     {
                         if (g.getGrelha()[i][j] == 0)
                         {
-                            if (fit(g, objectos[obj.Key], i, j) == true)
+                            if (fit(g, objectos[obj.Key-1], i, j) == true)
                             {
                                 place(g, objectos[obj.Key], i, j);
                                 sumArea += objectos[obj.Key].Area();
@@ -130,6 +130,11 @@ namespace ConsoleApplication1
 
         private bool fit(Grid g, Object p, int i, int j)
         {
+            if (g.Bcolunas < p.Obj_X + i || g.Blinhas < p.Obj_Y + j)
+            {
+                return false;
+            }
+
             for (int a = 0; a < p.Obj_X; a++)
             {
                 for (int b = 0; b < p.Obj_Y; b++)
