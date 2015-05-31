@@ -8,22 +8,28 @@ namespace ConsoleApplication1.Genetic_Alghoritms
 {
     class Ag
     {
-        private static float CrossOver_rate;
-        private static float Mutation_rate;
-        private static int tamanhoPopRandom; //??
+        private static float crossOver_rate = 0.6F;
+        private static float Mutation_rate = 0.1F;
         public static bool elitism;
 
-
-        public static Populacao evolucao(Populacao popAnt)
+        public Ag(float p1, float p2, bool p3)
         {
-            Populacao popNova = new Populacao(popAnt.ToString().Length);
+            crossOver_rate = p1;
+            Mutation_rate = p2;
+            elitism = p3;
+        }
+
+
+        public Populacao evolucao(Populacao popAnt, Grid g, List<Object> objectos)
+        {
+            Populacao popNova = new Populacao();
             int i = 1;
 
             if (elitism == true)
             {
-                Cromossoma crom = popAnt.getMelhorAdaptado();
+                Cromossoma crom = popAnt.getMelhorAdaptado(g, objectos);
 
-                if (crom.getAdaptacao() > 0)
+                if (crom.getAdaptacao(g, objectos) > 0)
                 {
                     popNova.setCromossoma(0, crom);
                 }
@@ -35,10 +41,10 @@ namespace ConsoleApplication1.Genetic_Alghoritms
 
 
             /* CROSSOVER ALEATORIO */
-            for (; i < popAnt.ToString().Length; i++ )
+            for (; i < popAnt.Ncromossomas(); i++ )
             {
-                Cromossoma crom1 = selecionaCromossoma(popAnt);
-                Cromossoma crom2 = selecionaCromossoma(popAnt);
+                Cromossoma crom1 = selecionaCromossoma(popAnt, g, objectos);
+                Cromossoma crom2 = selecionaCromossoma(popAnt, g, objectos);
 
                 Cromossoma cromNovo = crossOver(crom1, crom2);
                 popNova.setCromossoma(i, cromNovo);
@@ -54,64 +60,72 @@ namespace ConsoleApplication1.Genetic_Alghoritms
             }
 
             /* RANDOM MUTATIONS -> INDIVIDUO PERFEITO NAO SOFRE MUTAÇOES */
-            for (; i < popNova.ToString().Length; i++)
+            for (; i < popNova.Ncromossomas(); i++)
             {
-                mutacao(popNova[i]);
+                mutacao(popNova.getCromossoma(i));
             }
 
             return popNova;
         }
 
-        private static Cromossoma selecionaCromossoma(Populacao pop)
+        private static Cromossoma selecionaCromossoma(Populacao pop, Grid g, List<Object> objectos)
         {
-            Populacao temp = new Populacao(tamanhoPopRandom);
+            Populacao temp = new Populacao();
 
             Random r = new Random();
-            for(int i = 0; i < tamanhoPopRandom; i++)
+            for(int i = 0; i < pop.Ncromossomas() ; i++)
             {
-                int random = r.Next(0, pop.ToString().Length);
+                int random = r.Next(0, pop.Ncromossomas() - 1);
                 temp.setCromossoma(i, pop.getCromossoma(random));
             }
             // get the fittest
-            Cromossoma melhor = temp.getMelhorAdaptado();
+            Cromossoma melhor = temp.getMelhorAdaptado(g, objectos);
             return melhor;
 
         }
 
-
+        /* A mutacao vai apenas alterar a orientacao do objecto */
         public static void mutacao(Cromossoma crom)
         {
             Random rand = new Random();
-            for (int i = 0; i < crom.count; i++)
+            for (int i = 0; i < crom.NumberGenes(); i++)
             {
                 int random = rand.Next(0, 1);
                 if(random <= Mutation_rate)
                 {
-                    crom.setGene(i, crom.geraGene());
+                    crom.mutate(i);
                 }
             }
         }
 
 
-        /* EFECTUA O CROSSOVER GENE A GENE */
+        /* EFECTUA O MULTIPOINT CROSSOVER */
         private static Cromossoma crossOver(Cromossoma crom1, Cromossoma crom2)
         {
-            List<int> genes = new List<int>();
-            Random rand = new Random();
+            List<KeyValuePair<int, int>> genes = new List<KeyValuePair<int, int>>();
 
-            for (int i = 0; i < crom1.count; i++)
+            if (crom2.NumberGenes() < crom1.NumberGenes())
             {
-                int random = rand.Next(0, 1);
-                if(random <= CrossOver_rate)
+                Cromossoma temp = new Cromossoma(crom2.getCromossoma());
+                crom2 = crom1;
+                crom1 = temp;
+            }
+
+            Random rand = new Random();
+            int random = rand.Next(0, 1);
+            
+            for (int i = 0; i < crom2.NumberGenes(); i++)
+            {
+                if (random < crossOver_rate)
                 {
-                    genes.Add(i, crom1.getGene(i));
+                    genes.Add(crom1.getGene(i));
                 }
                 else
                 {
-                    genes.Add(i, crom2.getGene(i));
+                    genes.Add(crom2.getGene(i));
                 }
             }
-
+            
             Cromossoma novo = new Cromossoma(genes);
             return novo;
         }

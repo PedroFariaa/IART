@@ -11,10 +11,12 @@ namespace ConsoleApplication1
         public static int lastID = -1;
         int id;
         float areaObj;
+        public float Obj_X, Obj_Y;
 
         public Object()
         {
-            this.id = lastID+2;
+            this.id = lastID + 2;
+            lastID = lastID + 2;
             this.areaObj = Area();
         }
 
@@ -31,5 +33,9 @@ namespace ConsoleApplication1
             return 0;
         }
         
+        public virtual float dimMenor()
+        {
+            return 0;
+        }
     }
 }

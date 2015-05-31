@@ -9,7 +9,6 @@ namespace ConsoleApplication1
 {
     class Board
     {
-        int[][] cel; //array de celulas
         private List<Object> objectos = new List<Object> ();
         float B_dimX, B_dimY;
 
@@ -17,12 +16,23 @@ namespace ConsoleApplication1
         {
             this.B_dimX = p1;
             this.B_dimY = p2;
+            this.objectos = new List<Object>();
         }
 
 
         public List<Object> getObjects()
         {
             return objectos;
+        }
+
+        public float getB_dimX()
+        {
+            return this.B_dimX;
+        }
+
+        public float getB_dimY()
+        {
+            return this.B_dimY;
         }
 
         public float getOcupacao()

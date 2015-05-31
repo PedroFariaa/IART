@@ -42,8 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Genetic Alghoritms\Ag.cs" />
-    <Compile Include="Genetic Alghoritms\Individuo.cs" />
     <Compile Include="Genetic Alghoritms\Populacao.cs" />
+    <Compile Include="Grid.cs" />
     <Compile Include="Logic\Board.cs" />
     <Compile Include="Logic\Circulo.cs" />
     <Compile Include="Genetic Alghoritms\Cromossoma.cs" />

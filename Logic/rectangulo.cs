@@ -10,16 +10,30 @@ namespace ConsoleApplication1.Logic
     {
         private float dimX, dimY;
 
-        public Rectangulo(int p1, int p2) : base()
+        public Rectangulo(float p1, float p2) : base()
         {
             this.dimX = p1;
             this.dimY = p2;
+            this.Obj_X = p1;
+            this.Obj_Y = p2;
         }
 
         public override float Area()
         {
-            var ret = dimX* dimY;
+            var ret = dimX * dimY;
             return (float) ret;
+        }
+
+        public override float dimMenor()
+        {
+            if (dimX < dimY)
+            {
+                return dimX;
+            }
+            else
+            {
+                return dimY;
+            }
         }
     }
 }

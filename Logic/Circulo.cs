@@ -10,15 +10,22 @@ namespace ConsoleApplication1
     {
         float raio;
 
-        public Circulo(int p) : base()
+        public Circulo(float p) : base()
         {
             this.raio = p;
+            this.Obj_X = 2 * p;
+            this.Obj_Y = 2 * p;
         }
 
         public override float Area()
         {
             var ret =  2 * Math.PI * raio * raio;
             return (float) ret;
+        }
+
+        public override float dimMenor()
+        {
+            return 2 * raio;
         }
 
 

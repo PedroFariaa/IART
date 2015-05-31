@@ -1,4 +1,5 @@
-﻿using ConsoleApplication1.Logic;
+﻿using ConsoleApplication1.Genetic_Alghoritms;
+using ConsoleApplication1.Logic;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace ConsoleApplication1
             Console.WriteLine("B_dimY");
             var input_B_dimY = Console.ReadLine();
 
-            Board placa = new Board(Convert.ToInt16(input_B_dimX), Convert.ToInt16(input_B_dimY));
+            Board placa = new Board(float.Parse(input_B_dimX), float.Parse(input_B_dimY));
 
             Console.WriteLine("Introduce the Number of objects you want to cut: ");
             var input_NO = Console.ReadLine();
@@ -43,21 +44,46 @@ namespace ConsoleApplication1
                     var input_O_X = Console.ReadLine();
                     Console.WriteLine("introduce dimY");
                     var input_O_Y = Console.ReadLine();
-                    placa.getObjects().Add(new Rectangulo(Convert.ToInt32(input_O_X), Convert.ToInt32(input_O_Y)));
+                    /* VERIFICAR TAMANHO DAS PEÇAS */
+                    if (float.Parse(input_O_X) > float.Parse(input_B_dimX) || float.Parse(input_O_Y) > float.Parse(input_B_dimY))
+                    {
+                        a--;
+                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                    }
+                    else
+                    {
+                        placa.getObjects().Add(new Rectangulo(float.Parse(input_O_X), float.Parse(input_O_Y)));
+                    }                    
                 }
-                else if(input_O_formgeo == 2)
+                else if (input_O_formgeo == 2)
                 {
                     Console.WriteLine("introduce Base do triang");
                     var input_O_B = Console.ReadLine();
                     Console.WriteLine("introduce altura");
                     var input_O_H = Console.ReadLine();
-                    placa.getObjects().Add(new Triangulo(Convert.ToInt32(input_O_B), Convert.ToInt32(input_O_H)));
+                    if (float.Parse(input_O_B) > float.Parse(input_B_dimX) || float.Parse(input_O_H) > float.Parse(input_B_dimY))
+                    {
+                        a--;
+                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                    }
+                    else
+                    {
+                        placa.getObjects().Add(new Triangulo(float.Parse(input_O_B), float.Parse(input_O_H)));
+                    }
                 }
-                else if(input_O_formgeo == 3)
+                else if (input_O_formgeo == 3)
                 {
                     Console.WriteLine("introduce raio");
                     var input_O_R = Console.ReadLine();
-                    placa.getObjects().Add(new Circulo(Convert.ToInt32(input_O_R)));
+                    if (float.Parse(input_O_R) > float.Parse(input_B_dimX) || float.Parse(input_O_R) > float.Parse(input_B_dimY))
+                    {
+                        a--;
+                        Console.WriteLine("The object introduced is to big to fit the board. Please introduce it again");
+                    }
+                    else
+                    {
+                        placa.getObjects().Add(new Circulo(float.Parse(input_O_R)));
+                    }
                 }
                 else
                 {
@@ -67,15 +93,18 @@ namespace ConsoleApplication1
 
             }
 
+            Grid g = new Grid(float.Parse(input_B_dimX), float.Parse(input_B_dimY), placa.getObjects());
+
+            Populacao pInicial = new Populacao(5, placa.getObjects().Count);
+            
+            Ag evo = new Ag(0.6F, 0.1F, true);
+
+            evo.evolucao(pInicial, g, placa.getObjects());
+
+            
 
             /*
-                        DEFINIR A GRID
-             *          
-             *          PASSAR OBJECTOS PARA CROMOSSOMA 
-             *          VERIFICAR SE O CROMOSSOMA É POSSIVEL
-             *          
-             *          CONVERTER CROMOSSOMA PARA STRING ?
-             *          UTILIZAR AG
+             
              *          
              *          VERIFICAR SE O CROMOSSOMA RESULTANTE É VALIDO
              *          APRESENTAR RESULTADOS

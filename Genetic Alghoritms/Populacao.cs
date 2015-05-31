@@ -9,24 +9,33 @@ namespace ConsoleApplication1.Genetic_Alghoritms
     {
         List<Cromossoma> cromossomas;
 
+
         public Populacao( )
         {
             cromossomas = new List<Cromossoma> ();
         }
 
-        public Populacao(int tamanhoPopulacao, int tamanhoCromossoma, int OpcaoGenes)
+        public Populacao(int tamanhoPopulacao, int tamanhoCromossoma)
         {
             cromossomas = new List<Cromossoma>();
             for (int i = 0; i < tamanhoPopulacao; i++)
             {
-                Cromossoma novo = new Cromossoma(tamanhoCromossoma, OpcaoGenes);
+                Cromossoma novo = new Cromossoma(tamanhoCromossoma);
                 cromossomas.Add(novo);
             }
         }
 
+        public int Ncromossomas()
+        {
+            return this.cromossomas.Count;
+        }
+
         public Cromossoma getCromossoma(int pos)
         {
-            return cromossomas[pos];
+            if (pos < cromossomas.Count)
+                return cromossomas[pos];
+            else
+                return null;
         }
 
         public void setCromossoma(int pos, Cromossoma crom1)
@@ -41,19 +50,19 @@ namespace ConsoleApplication1.Genetic_Alghoritms
             }
         }
 
-        public Cromossoma getMelhorAdaptado()
+        public Cromossoma getMelhorAdaptado(Grid g, List<Object> objectos)
         {
             Cromossoma melhor = cromossomas[0];
 
             foreach (Cromossoma crom in cromossomas)
             {
-                if (melhor.getAdaptaca() < crom.getAdaptacao())
+                if (melhor.getAdaptacao(g, objectos) < crom.getAdaptacao(g, objectos))
                 {
                     melhor = crom;
                 }
             }
 
-            if ( melhor.getAdaptacao() == 0 )
+            if ( melhor.getAdaptacao(g, objectos) == 0 )
             {
                 Random r = new Random();
                 int random = r.Next(1, cromossomas.Count);
