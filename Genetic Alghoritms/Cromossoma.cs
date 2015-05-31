@@ -100,20 +100,20 @@ namespace ConsoleApplication1
                                 place(g, objectos[obj.Key], i, j);
                                 sumArea += objectos[obj.Key].Area();
                                 placed = true;
-                                goto NEXT;
+                                break;
                             }
                         }
                     }
+                    if (placed)
+                    {
+                        break;
+                    }
                 }
-                if (placed != true)
+                if (!placed)
                 {
-                    goto EXIT;
+                    break;
                 }
-            Next: 
-                placed = false;
-                
             }
-        Exit: 
             return sumArea / (g.B_dimX * g.B_dimY);
         }
 
